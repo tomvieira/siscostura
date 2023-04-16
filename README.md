@@ -9,6 +9,6 @@ Passos instalação do ambiente
   - . "$HOME/.asdf/asdf.sh"
   - . "$HOME/.asdf/completions/asdf.bash"
  - asdf plugin-add python
- - asdf install python latest
- - asdf global python latest
+ - asdf install python 3.10.0
+ - asdf global python 3.10.0
  
