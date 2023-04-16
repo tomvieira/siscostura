@@ -1,4 +1,4 @@
-# Siscostureira
+# Siscostura
 Sistema do Projeto Integrador I - UNIVESP
 
 Passos instalação do ambiente
