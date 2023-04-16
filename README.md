@@ -2,6 +2,7 @@
 Sistema do Projeto Integrador I - UNIVESP
 
 Passos instalação do ambiente
+## Instalação do python e gerenciador de versões.
 - Rodar em ambiente de terminal linux ou wsl2
 - apt install curl git
 - git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
