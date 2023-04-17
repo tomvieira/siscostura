@@ -12,5 +12,6 @@ Passos instalação do ambiente
  - asdf plugin-add python
  - asdf install python 3.10.0
  - asdf global python 3.10.0
-- pip install -r requirements.txt
+ - pip install -r requirements.txt
+ - docker run --name postgres-pi -e "POSTGRES_PASSWORD=siscostura" -p 5432:5432 -v /home/seu-user/PostgreSQL:/var/lib/postgresql/data -d postgres:9.4.26
  
