@@ -1,3 +1,4 @@
 /venv
 /siscostura/siscostura/__pycache__
 *.pyc
+/target
