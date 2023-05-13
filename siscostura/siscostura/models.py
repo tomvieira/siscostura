@@ -4,6 +4,7 @@ from django.db import models
 from django.db import models
 
 
+# classe cliente
 class Cliente(models.Model):
     nome = models.CharField(
         max_length=300,
@@ -70,5 +71,4 @@ class Cliente(models.Model):
         blank=True
     )
 
-
-objetos = models.Manager()
+    objetos = models.Manager()
