@@ -1,4 +1,5 @@
 from siscostura.models import Cliente
+from siscostura.models import Pedido
 from django import forms
 
 
@@ -40,5 +41,43 @@ class InsereClienteForm(forms.ModelForm):
             'endereco_bairro',
             'endereco_cidade',
             'endereco_estado',
+            'observacao',
+        ]
+
+# FORMULÁRIO DE INCLUSÃO DE PEDIDOS
+# -------------------------------------------
+
+
+class InserePedidoForm(forms.ModelForm):
+
+    observacao = forms.CharField(
+        label='Observação',
+        required=False,
+        widget=forms.Textarea
+    )
+
+    cliente = forms.ModelChoiceField(
+        label='Cliente',
+        queryset=Cliente.objetos.all().order_by('nome'),
+        required=True,
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+
+    data_pedido = forms.DateField(
+        label='Data pedido',
+        required=False,
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
+
+    class Meta:
+        # Modelo base
+        model = Pedido
+
+        # Campos que estarão no form
+        fields = [
+            'cliente',
+            'statusPedido',
+            'data_pedido',
+            'valor_total',
             'observacao',
         ]

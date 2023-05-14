@@ -5,6 +5,8 @@ from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from siscostura.models import Cliente
+from siscostura.models import Pedido
+from .forms import InserePedidoForm
 from django.urls import reverse_lazy
 from .forms import InsereClienteForm
 
@@ -68,3 +70,50 @@ class DeletaClienteView(DeleteView):
     model = Cliente
     context_object_name = 'Cliente'
     success_url = reverse_lazy("website:lista_clientes")
+
+
+# PÁGINA PRINCIPAL PEDIDOS
+# ----------------------------------------------
+
+class HomePedidoView(TemplateView):
+    template_name = "website/pedidos/index.html"
+
+# LISTA DE PEDIDOS
+# ----------------------------------------------
+
+
+class ListaPedidoView(ListView):
+    template_name = "website/pedidos/lista.html"
+    model = Pedido
+    context_object_name = "pedidos"
+
+
+# CADASTRAMENTO DE PEDIDOS
+# ----------------------------------------------
+
+class CriaPedidoView(CreateView):
+    template_name = "website/pedidos/cria.html"
+    model = Pedido
+    form_class = InserePedidoForm
+    success_url = reverse_lazy("website:lista_pedidos")
+
+
+# ATUALIZAÇÃO DE PEDIDOS
+# ----------------------------------------------
+
+class AtualizaPedidoView(UpdateView):
+    template_name = "website/pedidos/atualiza.html"
+    model = Pedido
+    fields = '__all__'
+    context_object_name = 'Pedido'
+    success_url = reverse_lazy("website:lista_pedidos")
+
+
+# EXCLUSÃO DE PEDIDOS
+# ----------------------------------------------
+
+class DeletaPedidoView(DeleteView):
+    template_name = "website/pedido/exclui.html"
+    model = Pedido
+    context_object_name = 'Pedido'
+    success_url = reverse_lazy("website:lista_pedidos")

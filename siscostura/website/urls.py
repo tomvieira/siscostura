@@ -32,4 +32,25 @@ urlpatterns = [
          views.DeletaClienteView.as_view(), name="deleta_cliente"),
 
 
+    # GET /pedidos
+    path('pedidos/', views.HomePedidoView.as_view(),
+         name="index_pedidos"),
+
+    # GET /pedidos/cadastrar
+    path('pedidos/cadastrar', views.CriaPedidoView.as_view(),
+         name="cadastra_pedido"),
+
+    # GET /pedidos
+    path('pedidos/lista', views.ListaPedidoView.as_view(),
+         name="lista_pedidos"),
+
+    # GET/POST /pedidos/{pk}
+    path('pedidos/<pk>', views.AtualizaPedidoView.as_view(),
+         name="atualiza_pedido"),
+
+    # GET/POST /clientes/excluir/{pk}
+    path('pedidos/excluir/<pk>',
+         views.DeletaPedidoView.as_view(), name="deleta_pedido"),
+
+
 ]

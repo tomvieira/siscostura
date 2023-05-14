@@ -72,3 +72,110 @@ class Cliente(models.Model):
     )
 
     objetos = models.Manager()
+
+    class Meta:
+        db_table = "cliente"
+
+    def __str__(self):
+        return f"{self.nome}"
+
+# classe status pedido
+
+
+class StatusPedido(models.Model):
+
+    descricao = models.CharField(
+        max_length=300,
+        null=False,
+        blank=False
+    )
+
+    objetos = models.Manager()
+
+    class Meta:
+        db_table = "status_pedido"
+
+    def __str__(self):
+        return f"{self.descricao}"
+
+# classe pedido
+
+
+class Pedido(models.Model):
+
+    cliente = models.ForeignKey(
+        Cliente,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        db_column="id_cliente"
+
+    )
+
+    statusPedido = models.ForeignKey(
+        StatusPedido,
+        null=False,
+        on_delete=models.NOT_PROVIDED,
+        blank=False,
+        db_column="id_status_pedido"
+    )
+
+    data_pedido = models.DateField(
+        null=False,
+        blank=False
+    )
+    valor_total = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
+    observacao = models.TextField(
+        max_length=2000,
+        null=True,
+        blank=True
+    )
+
+    objetos = models.Manager()
+
+    class Meta:
+        db_table = "pedido"
+
+# classe item_pedido
+
+
+class ItemPedido(models.Model):
+
+    pedido = models.ForeignKey(
+        Pedido,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        db_column="id_pedido"
+    )
+
+    descricao_item = models.CharField(
+        max_length=300,
+        null=False,
+        blank=False
+    )
+    preco = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=False,
+        blank=False
+    )
+    item_cancelado = models.BooleanField(
+        null=False,
+        default=False
+    )
+    observacao = models.CharField(
+        max_length=2000,
+        null=False,
+        blank=False
+    )
+
+    objetos = models.Manager()
+
+    class Meta:
+        db_table = "item_pedido"
