@@ -3,6 +3,7 @@ from django.urls import path
 from django.urls import include
 from . import views
 from .views import delete_item
+from django.contrib.auth import views as auth_views
 
 app_name = 'website'
 
@@ -56,10 +57,11 @@ urlpatterns = [
     path('delete-item/<int:pk>/', delete_item, name='delete_item'),
 
     #path('add-row/', views.add_row_pedido_items_hx, name='add_row_pedido_items_hx'),
+     
 
 
 ]
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),    
 ]

@@ -28,6 +28,26 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="card border-dark">
+                    <div class="card-header">Pedido</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Mantenha os <code>Pedidos</code> da empresa.
+                        </p>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="{% url 'website:cadastra_pedido' %}"
+                           class="btn btn-primary btn-sm">
+                            Cadastrar
+                        </a>
+                        <a href="{% url 'website:lista_pedidos' %}"
+                           class="btn btn-primary btn-sm">
+                            Lista
+                        </a>
+                    </div>
+                </div>
+            </div>
            
     </div>
 {% endblock %}

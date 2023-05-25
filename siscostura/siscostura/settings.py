@@ -91,12 +91,7 @@ DATABASES = {
     #    'USER': 'siscostura',
     #    'PASSWORD': 'siscostura',
     #    'HOST': 'localhost',
-<<<<<<< HEAD
     #    'PORT': '5432',    
-=======
-    #    'PORT': '5432',
-    #}
->>>>>>> 4a8f470d41a406bff587268d25d7d7e5e0155dac
 }
 
 
@@ -142,3 +137,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'

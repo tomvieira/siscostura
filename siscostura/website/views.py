@@ -14,6 +14,9 @@ from .forms import ItemPedidoFormSet
 from .forms import ItemPedidoForm
 from siscostura.models import ItemPedido
 from django.contrib import messages
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -21,6 +24,8 @@ from django.contrib import messages
 # PÁGINA PRINCIPAL
 # ----------------------------------------------
 
+
+@method_decorator(login_required(login_url='accounts/login/'), name='dispatch')
 class HomeView(TemplateView):
     template_name = "website/index.html"
 
