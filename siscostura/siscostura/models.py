@@ -148,9 +148,7 @@ class ItemPedido(models.Model):
 
     pedido = models.ForeignKey(
         Pedido,
-        on_delete=models.CASCADE,
-        null=False,
-        blank=False,
+        on_delete=models.CASCADE,        
         db_column="id_pedido"
     )
 

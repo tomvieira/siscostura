@@ -2,7 +2,6 @@
 
 {% block title %}Lista de Pedidos{% endblock %}
 
-{% load primeira_letra %}
 
 {% block conteudo %}
     <div class="container mt-5">
@@ -17,8 +16,8 @@
                             <table class="table table-light table-striped table-hover align-middle">
                                 <thead>
                                 <tr>
-                                    <th scope="col"></th>
                                     <th scope="col">Pedido</th>
+                                    <th scope="col">Cliente</th>
                                     <th scope="col">Data pedido</th>
                                     <th scope="col">Status pedido</th>
                                     <th scope="col">Valor</th>
@@ -27,12 +26,12 @@
                                 </thead>
                                 <tbody>
                                 {% for pedido in pedidos %}
-                                    <tr>
-                                        <th scope="row">{{ pedido.nome|primeira_letra }}</th>
+                                    <tr> 
+                                        <td>{{ pedido.id }}</td>                                       
                                         <td>{{ pedido.cliente.nome }}</td>
                                         <td>{{ pedido.data_pedido }}</td>
                                         <td>{{ pedido.statusPedido.descricao }}</td>
-                                        <td>{{ pedido.valor }}</td>
+                                        <td>{{ pedido.valor_total }}</td>
                                         <td class="text-center">
                                             <a href="{% url 'website:atualiza_pedido' pk=pedido.id %}"
                                                class="btn btn-primary btn-sm">

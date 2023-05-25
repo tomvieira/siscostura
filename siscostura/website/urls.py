@@ -2,6 +2,7 @@
 from django.urls import path
 from django.urls import include
 from . import views
+from .views import delete_item
 
 app_name = 'website'
 
@@ -51,6 +52,10 @@ urlpatterns = [
     # GET/POST /clientes/excluir/{pk}
     path('pedidos/excluir/<pk>',
          views.DeletaPedidoView.as_view(), name="deleta_pedido"),
+
+    path('delete-item/<int:pk>/', delete_item, name='delete_item'),
+
+    #path('add-row/', views.add_row_pedido_items_hx, name='add_row_pedido_items_hx'),
 
 
 ]

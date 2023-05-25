@@ -11,11 +11,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Cadastro de Pedido</h5>
-                        <p class="card-text">
-                            Complete o formulário abaixo para cadastrar
-                            um novo <code>Pedido</code>.
-                        </p>
+                        <h5 class="card-title">Consultar/Atualizar de Pedido</h5>                       
                         <form method="post">
                             <!-- Não se esqueça dessa tag -->
                             {% csrf_token %}
@@ -41,9 +37,11 @@
                                     {% endfor %}
                                 </div>                                
                             {% endfor %}
-                                      
 
-                            {% with named_formsets.item_pedido as formset %}
+                            {{ formset.management_form }}                  
+                          
+
+
                             {{ formset.management_form }}
                             <script type="text/html" id="items-template">  // id="inlineformsetname-template"
                                 // id='inlineformsetname-__prefix__' 
@@ -120,7 +118,7 @@
                                 <a href="#" id="add-item-button" class="btn btn-secondary add-items">Mais Itens</a> <!-- id="add-inlineformsetname-button" -->
                             </div>
 
-                            {% endwith %}
+
 
                             <hr>
                             <div class="text-end">
@@ -140,6 +138,20 @@
     <script>
     $(document).ready(function() {
         // when user clicks add more btn of images
+      $('.add-images').click(function(ev) {
+          ev.preventDefault();
+          var count = $('#item-images').children().length;
+          var tmplMarkup = $('#images-template').html();
+          var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
+          $('#item-images').append(compiledTmpl);
+  
+          // update form count
+          $('#id_images-TOTAL_FORMS').attr('value', count+1);
+      });
+  });
+
+  $(document).ready(function() {
+    // when user clicks add more btn of items
       $('.add-items').click(function(ev) {
           ev.preventDefault();
           var count = $('#item-items').children().length;
@@ -150,6 +162,6 @@
           // update form count
           $('#id_items-TOTAL_FORMS').attr('value', count+1);
       });
-  }); 
+  });
 </script>
 {% endblock %}

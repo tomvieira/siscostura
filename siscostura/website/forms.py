@@ -1,7 +1,8 @@
 from siscostura.models import Cliente
 from siscostura.models import Pedido
+from siscostura.models import ItemPedido
 from django import forms
-
+from django.forms import inlineformset_factory
 
 # FORMULÁRIO DE INCLUSÃO DE CLIENTES
 # -------------------------------------------
@@ -57,27 +58,32 @@ class InserePedidoForm(forms.ModelForm):
     )
 
     cliente = forms.ModelChoiceField(
-        label='Cliente',
+        label='Cliente',        
         queryset=Cliente.objetos.all().order_by('nome'),
         required=True,
+        
         widget=forms.Select(attrs={'class': 'form-control'})
     )
 
     data_pedido = forms.DateField(
         label='Data pedido',
         required=False,
-        widget=forms.DateInput(attrs={'type': 'date'})
+        widget=forms.DateInput(format='%d/%m/%Y')
     )
 
     class Meta:
         # Modelo base
         model = Pedido
 
-        # Campos que estarão no form
-        fields = [
-            'cliente',
-            'statusPedido',
-            'data_pedido',
-            'valor_total',
-            'observacao',
-        ]
+        fields = '__all__'
+
+class ItemPedidoForm(forms.ModelForm):
+    class Meta:
+        model = ItemPedido
+        fields = '__all__'
+
+ItemPedidoFormSet = inlineformset_factory(
+    Pedido, ItemPedido, form=ItemPedidoForm,
+    extra=1, can_delete=True,
+    can_delete_extra=True
+)
