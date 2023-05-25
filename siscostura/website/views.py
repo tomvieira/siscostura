@@ -46,6 +46,16 @@ class ListaclientesView(ListView):
     context_object_name = "clientes"
 
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        term = self.request.GET.get('search')
+
+        print(term)
+        if term:
+            return queryset.filter(nome__icontains=term)
+        return queryset
+
+
 # CADASTRAMENTO DE CLIENTES
 # ----------------------------------------------
 
